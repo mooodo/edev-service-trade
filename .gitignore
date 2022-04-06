@@ -1,0 +1,7 @@
+/.idea/
+/pom.xml
+/edev-trade-authority
+/edev-trade-customer/target
+/edev-trade-inventory/target
+/edev-trade-order/target
+/edev-trade-product/target

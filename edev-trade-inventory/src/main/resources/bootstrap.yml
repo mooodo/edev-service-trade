@@ -1,0 +1,68 @@
+spring:
+  application:
+    name: service-inventory
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+mybatis:
+  mapperLocations: classpath*:mapper/*Mapper.xml
+feign:
+  hystrix:
+    enabled: true
+logging:
+  level:
+    com.edev.trade: INFO
+    com.edev.support: INFO
+    com.edev.trade.query.dao: DEBUG
+    com.edev.support.dao: DEBUG
+    com.edev.trade.inventory.event: DEBUG
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://master:32306/edevInventory?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: inventory
+    password: inventory1234
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    database: 0
+    host: master
+    port: 31379
+    password:
+    pool:
+      maxActive: 200
+      maxWait: -1
+      maxIdel: 10
+      minIdel: 0
+    timeout: 1000
+  rabbitmq:
+    host: master
+    port: 31672
+    username: guest
+    password: guest
+  cloud:
+    stream:
+      bindings:
+        createOrder:
+          destination: createOrder
+          group: ${spring.application.name}
+        modifyOrder:
+          destination: modifyOrder
+          group: ${spring.application.name}
+server:
+  port: 9004
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9001/eureka
+---
+spring:
+  profiles: docker
+  cloud:
+    config:
+      uri: ${GIT_URL}
+      failFast: true
+server:
+  port: ${SERVICE_PORT:9004}

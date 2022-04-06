@@ -1,0 +1,26 @@
+package com.edev.trade.order.service;
+
+import com.edev.trade.order.entity.Address;
+import com.edev.trade.order.entity.Customer;
+import com.edev.trade.order.service.hystrix.CustomerServiceImpl;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+
+@FeignClient(value = "service-customer", fallback = CustomerServiceImpl.class)
+public interface CustomerService {
+    @GetMapping("orm/customer/load")
+    Customer load(@RequestParam Long customerId);
+    @PostMapping("list/customer/loadAll")
+    List<Customer> loadAll(@RequestBody List<Long> customerIds);
+    @GetMapping("orm/customer/loadAddress")
+    Address loadAddress(@RequestParam Long addressId);
+    @PostMapping("list/customer/loadAddresses")
+    List<Address> loadAddresses(@RequestBody List<Long> addressIds);
+    @GetMapping("orm/vip/discount")
+    Double discount(@RequestParam Long customerId);
+}
