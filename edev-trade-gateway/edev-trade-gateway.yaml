@@ -2,19 +2,19 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   labels:
-    app: edev-trade-customer
-  name: edev-trade-customer
+    app: edev-trade-gateway
+  name: edev-trade-gateway 
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: edev-trade-customer
+      app: edev-trade-gateway
   template:
     metadata:
-      name: edev-trade-customer
+      name: edev-trade-gateway
       labels:
-        app: edev-trade-customer
+        app: edev-trade-gateway
     spec:
       affinity:
         podAntiAffinity:
@@ -24,11 +24,11 @@ spec:
                   - key: "app"
                     operator: In
                     values:
-                      - edev-trade-customer
+                      - edev-trade-gateway
               topologyKey: "kubernetes.io/hostname"
       containers:
-      - name: edev-trade-customer
-        image: repository:5000/edev-trade-customer:<VERSION>
+      - name: edev-trade-gateway
+        image: repository:5000/edev-trade-gateway:<VERSION>
         imagePullPolicy: Always
         env:
           - name: GIT_URL
@@ -39,12 +39,14 @@ kind: Service
 apiVersion: v1
 metadata:
   labels:
-    app: edev-trade-customer
-  name: edev-trade-customer
+    app: edev-trade-gateway
+  name: edev-trade-gateway
   namespace: default
 spec:
+  type: NodePort
   ports:
-  - port: 9002
-    targetPort: 9002
+  - port: 9009
+    targetPort: 9009
+    nodePort: 31009
   selector:
-    app: edev-trade-customer
+    app: edev-trade-gateway

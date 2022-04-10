@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.edev.trade</groupId>
     <artifactId>edev-trade-gateway</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-${maven.build.timestamp}</version>
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
@@ -17,6 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
         <docker.image.prefix>demo</docker.image.prefix>
         <docker.repo>repository:5000</docker.repo>
     </properties>

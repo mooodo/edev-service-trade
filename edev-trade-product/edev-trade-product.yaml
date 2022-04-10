@@ -32,7 +32,7 @@ spec:
         imagePullPolicy: Always
         env:
           - name: GIT_URL
-            value: "http://demo-service-config:9000"
+            value: "http://edev-service-config:9000"
 ---
 kind: Service
 apiVersion: v1

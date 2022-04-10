@@ -5,3 +5,5 @@
 /edev-trade-inventory/target
 /edev-trade-order/target
 /edev-trade-product/target
+/edev-trade-gateway/target
+/edev-service-eureka/target/
