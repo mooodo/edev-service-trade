@@ -50,7 +50,7 @@ spring:
           destination: modifyOrder
           group: ${spring.application.name}
 server:
-  port: 9002
+  port: 9012
 eureka:
   client:
     serviceUrl:

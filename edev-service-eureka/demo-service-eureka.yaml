@@ -1,0 +1,39 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: edev-service-eureka
+  name: edev-service-eureka 
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: edev-service-eureka
+  template:
+    metadata:
+      name: edev-service-eureka
+      labels:
+        app: edev-service-eureka
+    spec:
+      containers:
+      - name: edev-service-eureka
+        image: repository:5000/edev-service-eureka:<VERSION>
+        imagePullPolicy: Always
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: edev-service-eureka
+  name: edev-service-eureka
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+  - port: 9001 
+    targetPort: 9001
+    nodePort: 31001
+  selector:
+    app: edev-service-eureka

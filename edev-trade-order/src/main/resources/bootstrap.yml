@@ -51,6 +51,19 @@ spring:
           destination: modifyOrder
 server:
   port: 9005
+ribbon:
+  ConnectTimeout: 1000
+  ReadTimeout: 2000
+  MaxAutoRetries: 0 # default 0
+  MaxAutoRetriesNextServer: 2 # default 1
+  OkToRetryOnAllOperations: true # default false
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
 eureka:
   client:
     serviceUrl:
