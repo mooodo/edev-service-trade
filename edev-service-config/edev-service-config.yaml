@@ -1,0 +1,50 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: edev-service-config
+  name: edev-service-config 
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: edev-service-config
+  template:
+    metadata:
+      name: edev-service-config
+      labels:
+        app: edev-service-config
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                      - edev-service-config
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: edev-service-config 
+        image: repository:5000/edev-service-config:<VERSION>
+        imagePullPolicy: Always
+        args: ["--spring.profiles.active=docker"]
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: edev-service-config
+  name: edev-service-config
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+  - port: 9000 
+    targetPort: 9000
+    nodePort: 31000
+  selector:
+    app: edev-service-config
