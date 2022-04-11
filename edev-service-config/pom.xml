@@ -18,7 +18,6 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
     <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
-    <docker.image.prefix>edev</docker.image.prefix>
     <docker.repo>repository:5000</docker.repo>
   </properties>
 
@@ -52,7 +51,7 @@
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>druid</artifactId>
-      <version>1.2.6</version>
+      <version>1.2.8</version>
       <exclusions>
         <exclusion>
           <groupId>com.alibaba</groupId>
@@ -86,7 +85,7 @@
         <version>0.4.3</version>
         <configuration>
           <forceTags>true</forceTags>
-          <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+          <imageName>${project.artifactId}</imageName>
           <imageTags>
             <imageTag>${project.version}</imageTag>
             <imageTag>latest</imageTag>
