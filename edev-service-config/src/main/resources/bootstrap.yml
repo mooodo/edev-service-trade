@@ -63,8 +63,8 @@ spring:
     config:
       server:
         git:
-          uri: https://gitee.com/mooodo/edev-service-config.git
-          searchPaths: src/main/resources/config-repo
+          uri: https://gitee.com/mooodo/edev-service-trade.git
+          searchPaths: edev-service-config/src/main/resources/config-repo
           force-pull: true
         bootstrap: true
     stream:
