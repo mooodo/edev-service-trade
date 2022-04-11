@@ -102,9 +102,8 @@
               <include>${project.build.finalName}.jar</include>
             </resource>
           </resources>
-          <image>${docker.image.prefix}/${project.artifactId}</image>
+          <image>${project.artifactId}</image>
           <newName>${docker.repo}/${project.artifactId}</newName>
-          <imageName>${docker.repo}/${project.artifactId}</imageName>
         </configuration>
       </plugin>
     </plugins>
