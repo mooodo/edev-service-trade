@@ -92,7 +92,7 @@
             <imageTag>latest</imageTag>
           </imageTags>
           <baseImage>java:8</baseImage>
-          <runs>["mv", "/${project.build.finalName}.jar", "/app.jar"]</runs>
+          <runs>mv /${project.build.finalName}.jar /app.jar</runs>
           <entryPoint>["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app.jar"]</entryPoint>
           <cmd>["--spring.profiles.active=docker"]</cmd>
           <resources>
