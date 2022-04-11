@@ -18,7 +18,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
-        <docker.image.prefix>demo</docker.image.prefix>
         <docker.repo>repository:5000</docker.repo>
     </properties>
 
@@ -65,13 +64,13 @@
                 <version>0.4.3</version>
                 <configuration>
                     <forceTags>true</forceTags>
-                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <imageName>${project.artifactId}</imageName>
                     <imageTags>
                         <imageTag>${project.version}</imageTag>
                         <imageTag>latest</imageTag>
                     </imageTags>
                     <baseImage>java:8</baseImage>
-                    <runs>["mv","/${project.build.finalName}.jar","/app.jar"]</runs>
+                    <runs>mv /${project.build.finalName}.jar /app.jar</runs>
                     <entryPoint>["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app.jar"]</entryPoint>
                     <cmd>["--spring.profiles.active=docker"]</cmd>
                     <resources>
@@ -81,7 +80,7 @@
                             <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
-                    <image>${docker.image.prefix}/${project.artifactId}</image>
+                    <image>${project.artifactId}</image>
                     <newName>${docker.repo}/${project.artifactId}</newName>
                     <imageName>${docker.repo}/${project.artifactId}</imageName>
                 </configuration>
