@@ -1,6 +1,7 @@
 eureka:
   client:
     registry-fetch-interval-seconds: 5 #default 30s
+spring:
   cloud:
     gateway:
       routes:
