@@ -104,6 +104,7 @@
           </resources>
           <image>${project.artifactId}</image>
           <newName>${docker.repo}/${project.artifactId}</newName>
+          <imageName>${docker.repo}/${project.artifactId}</imageName>
         </configuration>
       </plugin>
     </plugins>
