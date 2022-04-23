@@ -74,12 +74,12 @@ public class OrderMvcTest {
         Address address = new Address(1000100L,10001L,1000L,420000L,
                 420100L,420111L,"珞瑜路726号","13300224466");
         order.setAddress(address);
-        OrderItem orderItem0 = new OrderItem(1L,id,30001L,1D,4000D,4000D);
+        OrderItem orderItem0 = new OrderItem(1L,id,30001L,1L,4000D,4000D);
         Product product0 = new Product(30001L,"Apple iPhone X 256GB 深空灰色 移动联通电信4G手机",4000D,
                 "台",20004L,100100L);
         orderItem0.setProduct(product0);
         order.addOrderItem(orderItem0);
-        OrderItem orderItem1 = new OrderItem(2L,id,30004L,2D,958D,1916D);
+        OrderItem orderItem1 = new OrderItem(2L,id,30004L,2L,958D,1916D);
         Product product1 = new Product(30004L,"Kindle Paperwhite电纸书阅读器 电子书墨水屏 6英寸wifi 黑色",958D,
                 "个",20002L,100500L);
         orderItem1.setProduct(product1);
@@ -125,12 +125,12 @@ public class OrderMvcTest {
         Address address1 = new Address(1000100L,10001L,1000L,420000L,
                 420100L,420111L,"珞瑜路726号","13300224466");
         order0.setAddress(address1);
-        OrderItem orderItem0 = new OrderItem(1L,id1,30001L,1D,4000D,4000D);
+        OrderItem orderItem0 = new OrderItem(1L,id1,30001L,1L,4000D,4000D);
         Product product0 = new Product(30001L,"Apple iPhone X 256GB 深空灰色 移动联通电信4G手机",4000D,
                 "台",20004L,100100L);
         orderItem0.setProduct(product0);
         order1.addOrderItem(orderItem0);
-        OrderItem orderItem1 = new OrderItem(2L,id1,30004L,2D,958D,1916D);
+        OrderItem orderItem1 = new OrderItem(2L,id1,30004L,2L,958D,1916D);
         Product product1 = new Product(30004L,"Kindle Paperwhite电纸书阅读器 电子书墨水屏 6英寸wifi 黑色",958D,
                 "个",20002L,100500L);
         orderItem1.setProduct(product1);
@@ -185,12 +185,12 @@ public class OrderMvcTest {
         Address address1 = new Address(1000100L,10001L,1000L,420000L,
                 420100L,420111L,"珞瑜路726号","13300224466");
         order0.setAddress(address1);
-        OrderItem orderItem0 = new OrderItem(1L,id1,30001L,1D,4000D,4000D);
+        OrderItem orderItem0 = new OrderItem(1L,id1,30001L,1L,4000D,4000D);
         Product product0 = new Product(30001L,"Apple iPhone X 256GB 深空灰色 移动联通电信4G手机",4000D,
                 "台",20004L,100100L);
         orderItem0.setProduct(product0);
         order1.addOrderItem(orderItem0);
-        OrderItem orderItem1 = new OrderItem(2L,id1,30004L,2D,958D,1916D);
+        OrderItem orderItem1 = new OrderItem(2L,id1,30004L,2L,958D,1916D);
         Product product1 = new Product(30004L,"Kindle Paperwhite电纸书阅读器 电子书墨水屏 6英寸wifi 黑色",958D,
                 "个",20002L,100500L);
         orderItem1.setProduct(product1);

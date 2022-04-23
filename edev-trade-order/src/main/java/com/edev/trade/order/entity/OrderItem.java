@@ -12,14 +12,14 @@ public class OrderItem extends Entity<Long> {
 	private Long id;
 	private Long orderId;
 	private Long productId;
-	private Double quantity;
+	private Long quantity;
 	private Double price;
 	private Double amount;
 	private Product product;
 
 	public OrderItem() {}
 
-	public OrderItem(Long id, Long orderId, Long productId, Double quantity, Double price, Double amount) {
+	public OrderItem(Long id, Long orderId, Long productId, Long quantity, Double price, Double amount) {
 		this.id = id;
 		this.orderId = orderId;
 		this.productId = productId;
@@ -54,11 +54,11 @@ public class OrderItem extends Entity<Long> {
 		this.productId = productId;
 	}
 
-	public Double getQuantity() {
+	public Long getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Double quantity) {
+	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
 	}
 
