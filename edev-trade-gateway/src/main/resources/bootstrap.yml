@@ -27,12 +27,28 @@ spring:
             - Path=/order/**
           filters:
             - StripPrefix=1
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@ipKeyResolver}"   # 用于限流的键的解析器的 Bean
+                redis-rate-limiter.replenishRate: 1 # 令牌桶每秒填充平均速率
+                redis-rate-limiter.burstCapacity: 10 # 令牌桶总容量
         - id: inventory
           uri: lb://service-inventory
           predicates:
             - Path=/inventory/**
           filters:
             - StripPrefix=1
+  redis:
+    database: 0
+    host: master
+    port: 31379
+    password:
+    pool:
+      maxActive: 200
+      maxWait: -1
+      maxIdel: 10
+      minIdel: 0
+    timeout: 1000
 server:
   port: 9009
 eureka:
