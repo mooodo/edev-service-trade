@@ -49,6 +49,13 @@ spring:
           destination: createOrder
         modifyOrder:
           destination: modifyOrder
+      #rocketmq:
+      #  binder:
+      #    name-server: master:30876
+  #kafka:
+  #  binder:
+  #    zk-nodes: master:32181
+  #  bootstrap-servers: master:30092
 server:
   port: 9005
 ribbon:

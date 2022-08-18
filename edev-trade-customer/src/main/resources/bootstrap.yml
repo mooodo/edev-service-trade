@@ -49,8 +49,15 @@ spring:
         modifyOrder:
           destination: modifyOrder
           group: ${spring.application.name}
+  #    rocketmq:
+  #      binder:
+  #        name-server: master:30876
+  #kafka:
+  #  binder:
+  #    zk-nodes: master:32181
+  #  bootstrap-servers: master:30092
 server:
-  port: 9012
+  port: 9002
 eureka:
   client:
     serviceUrl:
