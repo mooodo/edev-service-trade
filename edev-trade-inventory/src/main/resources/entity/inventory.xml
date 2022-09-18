@@ -4,8 +4,5 @@
         <property name="id" column="id" isPrimaryKey="true"/>
         <property name="quantity" column="quantity"/>
         <property name="updateTime" column="update_time"/>
-        <ref name="product" refType="oneToOne"
-             bean="com.edev.trade.inventory.service.ProductService"
-             method="getProduct" listMethod="listProducts"/>
     </do>
 </dobjs>
