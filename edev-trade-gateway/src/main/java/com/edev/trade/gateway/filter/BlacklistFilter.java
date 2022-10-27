@@ -1,5 +1,5 @@
 /*
- * Created by 2021-03-26 18:49:51 
+ * Created by 2021-03-26 18:40:57 
  */
 package com.edev.trade.gateway.filter;
 
@@ -15,16 +15,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.net.URI;
+import java.net.InetSocketAddress;
 
 /**
- * The filter that get the user's method and url
+ * The filter that refuse the host's ip which is in the blacklist.
  * @author fangang
  */
 @Component
-public class UrlFilter implements GlobalFilter, Ordered {
-	private static final Log log = LogFactory.getLog(UrlFilter.class);
-	private static final String FORBIDDEN_URL = "/foo";
+public class BlacklistFilter implements GlobalFilter, Ordered {
+	private static final Log log = LogFactory.getLog(BlacklistFilter.class);
 	@Override
 	public int getOrder() {
 		return 1;
@@ -33,11 +32,11 @@ public class UrlFilter implements GlobalFilter, Ordered {
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 		ServerHttpRequest request = exchange.getRequest();
-		log.info(
-	                String.format("send %s[method] request to %s[url]",
-	                		request.getMethod(),
-	                		request.getURI()));
-		if(isForbiddenUrl(request.getURI())) return forbidden(exchange);
+		InetSocketAddress remoteAddress = request.getRemoteAddress();
+		if(remoteAddress==null) return forbidden(exchange);
+		String hostName = remoteAddress.getHostName();
+		log.info("[ ip: "+hostName+" ]");
+		if(isInBlacklist(hostName)) return forbidden(exchange);
 		return chain.filter(exchange);
 	}
 
@@ -47,7 +46,8 @@ public class UrlFilter implements GlobalFilter, Ordered {
 		return response.setComplete();
 	}
 
-	private boolean isForbiddenUrl(URI url) {
-		return FORBIDDEN_URL.equals(url.toString());
+	private boolean isInBlacklist(String hostName) {
+		//you can read blacklist from database;
+		return "192.168.0.100".equals(hostName);
 	}
 }
