@@ -6,7 +6,7 @@
     <artifactId>edev-trade-customer</artifactId>
     <version>1.0.0-${maven.build.timestamp}</version>
     <parent>
-        <artifactId>edev-parent</artifactId>
+        <artifactId>edev-trade-parent</artifactId>
         <groupId>com.edev.trade</groupId>
         <version>1.0.0</version>
         <relativePath/>

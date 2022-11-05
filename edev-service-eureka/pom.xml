@@ -7,18 +7,14 @@
     <artifactId>edev-service-eureka</artifactId>
     <version>1.0.0-${maven.build.timestamp}</version>
     <parent>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <groupId>org.springframework.boot</groupId>
-        <version>2.1.13.RELEASE</version>
+        <artifactId>edev-parent</artifactId>
+        <groupId>com.edev.trade</groupId>
+        <version>1.0.0</version>
         <relativePath/>
     </parent>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
         <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
-        <docker.repo>repository:5000</docker.repo>
     </properties>
 
     <dependencies>
@@ -31,71 +27,4 @@
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Greenwich.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.4.3</version>
-                <configuration>
-                    <forceTags>true</forceTags>
-                    <imageName>${project.artifactId}</imageName>
-                    <imageTags>
-                        <imageTag>${project.version}</imageTag>
-                        <imageTag>latest</imageTag>
-                    </imageTags>
-                    <baseImage>java:8</baseImage>
-                    <runs>mv /${project.build.finalName}.jar /app.jar</runs>
-                    <entryPoint>["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app.jar"]</entryPoint>
-                    <cmd>["--spring.profiles.active=docker"]</cmd>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                    <image>${project.artifactId}</image>
-                    <newName>${docker.repo}/${project.artifactId}</newName>
-                    <imageName>${docker.repo}/${project.artifactId}</imageName>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-    <repositories>
-        <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>https://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 </project>
