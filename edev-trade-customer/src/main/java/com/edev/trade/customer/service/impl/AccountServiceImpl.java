@@ -24,8 +24,6 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Long createAccount(Account account) {
         validAccount(account);
-        if(account.getBalance()==0) account.setBalance(0D);
-        if(account.getCreateTime()==null) account.setCreateTime(DateUtils.getNow());
         return dao.insert(account);
     }
 
@@ -48,7 +46,11 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Double topUp(Long id, Double amount) {
+        if(id==null||amount==null)
+            throw new ValidException("The id[%] or amount[%] is null", id, amount);
         Account account = getAccount(id);
+        if(account==null)
+            throw new ValidException("The account[%] isn't available", id);
         Double balance = account.getBalance() + amount;
         account.setBalance(balance);
         modifyAccount(account);
@@ -57,8 +59,27 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Double payoff(Long id, Double amount) {
+        if(id==null||amount==null)
+            throw new ValidException("The id[%] or amount[%] is null", id, amount);
         Account account = getAccount(id);
+        if(account==null)
+            throw new ValidException("The account[%] isn't available", id);
+        if(account.getBalance() < amount)
+            throw new ValidException("The account[%] has no enough money[%]", id, account.getBalance());
         Double balance = account.getBalance() - amount;
+        account.setBalance(balance);
+        modifyAccount(account);
+        return balance;
+    }
+
+    @Override
+    public Double refund(Long id, Double amount) {
+        if(id==null||amount==null)
+            throw new ValidException("The id[%] or amount[%] is null", id, amount);
+        Account account = getAccount(id);
+        if(account==null)
+            throw new ValidException("The account[%] isn't available", id);
+        Double balance = account.getBalance() + amount;
         account.setBalance(balance);
         modifyAccount(account);
         return balance;

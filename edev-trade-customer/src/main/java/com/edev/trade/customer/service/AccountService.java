@@ -9,4 +9,5 @@ public interface AccountService {
     Account getAccount(Long id);
     Double topUp(Long id, Double amount);
     Double payoff(Long id, Double amount);
+    Double refund(Long id, Double amount);
 }

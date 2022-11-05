@@ -1,7 +1,5 @@
 package com.edev.trade.customer.entity;
 
-import java.util.Date;
-
 public class GoldenVip extends Vip{
     private Double cashback;
     public GoldenVip() { super(); }
@@ -17,5 +15,10 @@ public class GoldenVip extends Vip{
 
     public void setCashback(Double cashback) {
         this.cashback = cashback;
+    }
+
+    @Override
+    public Double discount() {
+        return 0.9D;
     }
 }
