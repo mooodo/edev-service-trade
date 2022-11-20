@@ -1,10 +1,5 @@
 /.idea/
 /pom.xml
 /edev-trade-authority/
-/edev-trade-customer/target/
-/edev-trade-inventory/target/
-/edev-trade-order/target/
-/edev-trade-product/target/
-/edev-trade-gateway/target/
-/edev-service-eureka/target/
-/edev-service-config/target/
+/edev-service-oauth2/
+/*/target/
