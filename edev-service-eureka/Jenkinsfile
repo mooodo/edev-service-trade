@@ -1,0 +1,23 @@
+node {
+    def parent = 'edev-service-trade'
+    def app = 'edev-service-eureka'
+    stage('拉取代码') {
+        git "https://gitee.com/mooodo/${parent}.git"
+    }
+    stage('制作镜像') {
+        sh "/var/jenkins_home/docker.sh ${app}"
+        sh """
+        cd ${app}
+        mvn clean install docker:build -DpushImageTag
+        """
+    }
+    stage('云端部署') {
+        sh """
+        cd ${app}
+        VER=\$(docker images |grep ${app} |grep -v latest |awk '{print \$2}')
+        echo "version:\${VER}"
+        sed -i "s/<VERSION>/\${VER}/" "${app}-cluster.yaml"
+        kubectl apply -f ${app}-cluster.yaml
+        """
+    }
+}
