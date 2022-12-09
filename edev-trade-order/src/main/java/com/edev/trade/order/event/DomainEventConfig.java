@@ -7,12 +7,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableBinding(CreateOrderEvent.class)
+@EnableBinding({PlaceOrderEvent.class, ReturnGoodsEvent.class})
 public class DomainEventConfig {
     @Autowired
-    private CreateOrderEvent createOrderEvent;
-    @Bean("createOrderEvent")
-    public DomainEventPublisher createOrderEventPublisher() {
-        return new DomainEventPublisher("createOrder", createOrderEvent);
+    private PlaceOrderEvent placeOrderEvent;
+    @Bean
+    public DomainEventPublisher placeOrderEvent() {
+        return new DomainEventPublisher("placeOrder", placeOrderEvent);
+    }
+    @Autowired
+    private ReturnGoodsEvent returnGoodsEvent;
+    @Bean
+    public DomainEventPublisher returnGoodsEvent() {
+        return new DomainEventPublisher("returnGoods", returnGoodsEvent);
     }
 }

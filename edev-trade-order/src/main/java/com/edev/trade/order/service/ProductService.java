@@ -1,7 +1,7 @@
 package com.edev.trade.order.service;
 
 import com.edev.trade.order.entity.Product;
-import com.edev.trade.order.service.hystrix.ProductServiceImpl;
+import com.edev.trade.order.service.fallback.ProductServiceImpl;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;

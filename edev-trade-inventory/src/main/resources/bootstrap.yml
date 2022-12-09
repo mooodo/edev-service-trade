@@ -22,13 +22,13 @@ logging:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://master:32306/edevInventory?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://kubernetes:32306/edevInventory?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
     username: inventory
     password: inventory1234
     type: com.alibaba.druid.pool.DruidDataSource
   redis:
     database: 0
-    host: master
+    host: kubernetes
     port: 31379
     password:
     pool:
@@ -38,26 +38,26 @@ spring:
       minIdel: 0
     timeout: 1000
   rabbitmq:
-    host: master
+    host: kubernetes
     port: 31672
     username: guest
     password: guest
   cloud:
     stream:
       bindings:
-        createOrder:
-          destination: createOrder
+        placeOrder:
+          destination: placeOrder
           group: ${spring.application.name}
-        modifyOrder:
-          destination: modifyOrder
+        returnGoods:
+          destination: returnGoods
           group: ${spring.application.name}
   #    rocketmq:
   #      binder:
-  #        name-server: master:30876
+  #        name-server: kubernetes:30876
   #kafka:
   #  binder:
-  #    zk-nodes: master:32181
-  #  bootstrap-servers: master:30092
+  #    zk-nodes: kubernetes:32181
+  #  bootstrap-servers: kubernetes:30092
 server:
   port: 9004
 ribbon:
@@ -72,7 +72,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 6000
+            timeoutInMilliseconds: 3000
 eureka:
   client:
     serviceUrl:

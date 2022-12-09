@@ -14,7 +14,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -27,6 +30,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class VipMvcTest {
     @Autowired
     private MockMvc mvc;
+
+    /**
+     * 业务需求：
+     * 1）会员按照继承分为金卡会员和银卡会员，按照会员类型来划分
+     * 2）可以通过前端读取的数据，创建不同类型的会员对象
+     * 3）通过修改会员类型，可以切换不同类型的会员对象
+     * 4）将父类与子类的数据全部都写入数据库的一张表中
+     * 5）插入会员时，自动生成创建时间
+     */
     @Test
     public void testSaveAndDelete() throws Exception {
         Long id = 1L;
@@ -59,6 +71,13 @@ public class VipMvcTest {
                 .param("vipId", id.toString())
         ).andExpect(status().isOk()).andExpect(content().string(""));
     }
+
+    /**
+     * 业务需求：
+     * 1）会员通过一对一关系会关联一个客户对象
+     * 2）当查询会员时，会关联该客户
+     * 3）当增删改会员时，由于不是聚合关系，不会更改客户
+     */
     @Test
     public void testSaveAndDeleteWithCustomer() throws Exception {
         Long id = 10001L;
@@ -95,6 +114,12 @@ public class VipMvcTest {
         ).andExpect(status().isOk()).andExpect(content().string(""));
     }
 
+    /**
+     * 业务需求：
+     * 以列表的形式对会员进行批量地增删改查操作：
+     * 1）添加、修改时这样提交：[{id:1,available:true...},{id:10001,available:true...}]
+     * 2）删除等操作时这样提交：[1,10001]
+     */
     @Test
     public void testSaveAndDeleteForList() throws Exception {
         Long id0 = 1L;
@@ -132,6 +157,12 @@ public class VipMvcTest {
         ).andExpect(status().isOk()).andExpect(content().json("[]"));
     }
 
+    /**
+     * 业务需求：
+     * 以Json的形式对客户进行批量地增删改查操作：
+     * 1）添加、修改时这样提交：{customers: [{id:1,available:true...},{id:10001,available:true...}]}
+     * 2）删除等操作时这样提交：customerIds=1,10001
+     */
     @Test
     public void testSaveAndDeleteForJsonList() throws Exception {
         Long id0 = 1L;

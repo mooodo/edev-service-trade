@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class Account extends Entity<Long> {
     private Long id;
+    private Long customerId;
     private Double balance;
     private Date createTime;
     private Date updateTime;
@@ -14,8 +15,9 @@ public class Account extends Entity<Long> {
 
     public Account() { }
 
-    public Account(Long id, Double balance, Date createTime, Date updateTime) {
+    public Account(Long id, Long customerId, Double balance, Date createTime, Date updateTime) {
         setId(id);
+        setCustomerId(customerId);
         setBalance(balance);
         setCreateTime(createTime);
         setUpdateTime(updateTime);
@@ -29,6 +31,14 @@ public class Account extends Entity<Long> {
     @Override
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     public Double getBalance() {

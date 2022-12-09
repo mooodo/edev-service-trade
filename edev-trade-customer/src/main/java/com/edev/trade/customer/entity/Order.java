@@ -21,6 +21,7 @@ public class Order extends Entity<Long> {
 	private Date orderTime;
 	private Date modifyTime;
 	private String flag;
+	private Payment payment;
 
 	public Order() {}
 
@@ -98,6 +99,14 @@ public class Order extends Entity<Long> {
 
 	public void setFlag(String flag) {
 		this.flag = flag;
+	}
+
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
 
 	@Override

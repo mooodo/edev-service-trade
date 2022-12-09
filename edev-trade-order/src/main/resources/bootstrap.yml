@@ -28,7 +28,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
   redis:
     database: 0
-    host: master
+    host: kubernetes
     port: 31379
     password:
     pool:
@@ -38,17 +38,19 @@ spring:
       minIdel: 0
     timeout: 1000
   rabbitmq:
-    host: master
+    host: kubernetes
     port: 31672
     username: guest
     password: guest
   cloud:
     stream:
       bindings:
-        createOrder:
-          destination: createOrder
-        modifyOrder:
-          destination: modifyOrder
+        placeOrder:
+          destination: placeOrder
+          group: ${spring.application.name}
+        returnGoods:
+          destination: returnGoods
+          group: ${spring.application.name}
       #rocketmq:
       #  binder:
       #    name-server: master:30876

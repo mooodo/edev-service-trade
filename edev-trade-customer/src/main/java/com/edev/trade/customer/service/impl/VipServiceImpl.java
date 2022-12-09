@@ -12,13 +12,8 @@ import java.util.Collection;
 import java.util.List;
 
 public class VipServiceImpl implements VipService {
-    private BasicDao dao;
-
-    public BasicDao getDao() {
-        return dao;
-    }
-
-    public void setDao(BasicDao dao) {
+    private final BasicDao dao;
+    public VipServiceImpl(BasicDao dao) {
         this.dao = dao;
     }
 

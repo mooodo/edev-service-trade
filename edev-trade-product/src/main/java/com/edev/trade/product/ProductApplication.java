@@ -8,7 +8,6 @@ import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 @ComponentScan(basePackages={"com.edev"})
-@ImportResource(locations={"classpath*:applicationContext-*.xml"})
 @MapperScan("com.edev.support.dao")
 public class ProductApplication {
     public static void main(String[] args) {

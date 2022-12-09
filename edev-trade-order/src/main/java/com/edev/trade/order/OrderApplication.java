@@ -5,11 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 @ComponentScan(basePackages={"com.edev"})
-@ImportResource(locations={"classpath*:applicationContext-*.xml"})
 @MapperScan("com.edev.support.dao")
 @EnableFeignClients
 public class OrderApplication {

@@ -11,13 +11,9 @@ import java.util.Collection;
 import java.util.List;
 
 public class InventoryServiceImpl implements InventoryService {
-    private BasicDao dao;
+    private final BasicDao dao;
 
-    public BasicDao getDao() {
-        return dao;
-    }
-
-    public void setDao(BasicDao dao) {
+    public InventoryServiceImpl(BasicDao dao) {
         this.dao = dao;
     }
 
