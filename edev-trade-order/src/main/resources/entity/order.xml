@@ -18,7 +18,7 @@
 			  class="com.edev.trade.order.entity.Payment"/>
 		<join name="orderItems" joinKey="orderId" joinType="oneToMany"
 			  isAggregation="true" class="com.edev.trade.order.entity.OrderItem"/>
-		</do>
+	</do>
 	<do class="com.edev.trade.order.entity.OrderItem" tableName="t_order_item">
 		<property name="id" column="id" isPrimaryKey="true"/>
 		<property name="orderId" column="order_id"/>
