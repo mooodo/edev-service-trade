@@ -2,6 +2,7 @@ package com.edev.trade.order.service;
 
 import com.edev.trade.order.entity.Address;
 import com.edev.trade.order.entity.Customer;
+import com.edev.trade.order.entity.Vip;
 import com.edev.trade.order.service.fallback.CustomerServiceImpl;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,6 @@ public interface CustomerService {
     List<Address> loadAddresses(@RequestBody List<Long> addressIds);
     @GetMapping("orm/vip/discount")
     Double discount(@RequestParam Long customerId);
+    @GetMapping("orm/vip/loadByCustomer")
+    Vip loadByCustomer(Long customerId);
 }
