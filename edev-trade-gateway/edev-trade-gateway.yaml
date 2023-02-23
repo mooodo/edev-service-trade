@@ -33,7 +33,6 @@ spec:
         env:
           - name: GIT_URL
             value: "http://edev-service-config:9000"
-
 ---
 kind: Service
 apiVersion: v1
@@ -43,10 +42,28 @@ metadata:
   name: edev-trade-gateway
   namespace: default
 spec:
-  type: NodePort
   ports:
   - port: 9009
     targetPort: 9009
-    nodePort: 31009
   selector:
     app: edev-trade-gateway
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-edev-trade
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - host: trade
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: edev-trade-gateway
+                port:
+                  number: 9009
