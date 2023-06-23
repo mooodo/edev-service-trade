@@ -1,18 +1,13 @@
-/*
- * created by 2019年7月22日 下午3:20:12
- */
 package com.edev.trade.customer.entity;
 
 import com.edev.support.entity.Entity;
-import com.edev.support.utils.DateUtils;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-/**
- * @author fangang
- */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class Order extends Entity<Long> {
 	private Long id;
 	private Long customerId;
@@ -22,95 +17,7 @@ public class Order extends Entity<Long> {
 	private Date modifyTime;
 	private String flag;
 	private Payment payment;
-
-	public Order() {}
-
-	public Order(Long id, Long customerId, Long addressId, Double amount, Date orderTime, String flag) {
-		this.id = id;
-		this.customerId = customerId;
-		this.addressId = addressId;
-		this.amount = amount;
-		this.orderTime = (orderTime==null) ? DateUtils.getNow() : orderTime;
-		this.flag = (flag==null) ? "CREATE" : flag;
-	}
-
-	public Order(Long id, Long customerId, Long addressId) {
-		this.id = id;
-		this.customerId = customerId;
-		this.addressId = addressId;
-		this.amount = 0D;
-		this.orderTime = DateUtils.getNow();
-		this.flag = "create";
-	}
-
-	@Override
-	public Long getId() {
-		return id;
-	}
-
-	@Override
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(Long customerId) {
-		this.customerId = customerId;
-	}
-
-	public Long getAddressId() {
-		return addressId;
-	}
-
-	public void setAddressId(Long addressId) {
-		this.addressId = addressId;
-	}
-
-	public Double getAmount() {
-		return amount;
-	}
-
-	public void setAmount(Double amount) {
-		this.amount = amount;
-	}
-
-	public Date getOrderTime() {
-		return orderTime;
-	}
-
-	public void setOrderTime(Date orderTime) {
-		this.orderTime = orderTime;
-	}
-
-	public Date getModifyTime() {
-		return modifyTime;
-	}
-
-	public void setModifyTime(Date modifyTime) {
-		this.modifyTime = modifyTime;
-	}
-
-	public String getFlag() {
-		return flag;
-	}
-
-	public void setFlag(String flag) {
-		this.flag = flag;
-	}
-
-	public Payment getPayment() {
-		return payment;
-	}
-
-	public void setPayment(Payment payment) {
-		this.payment = payment;
-	}
-
-	@Override
-	protected String[] exclude() {
-		return new String[]{"orderTime","modifyTime"};
+	public static Order build() {
+		return new Order();
 	}
 }

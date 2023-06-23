@@ -13,7 +13,7 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer load(Long customerId) {
-        return new Customer(customerId,"Unknown","Unknown",null,null);
+        return Customer.build().setValues(customerId,"Unknown","Unknown");
     }
 
     @Override
@@ -25,7 +25,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Address loadAddress(Long addressId) {
-        return new Address(addressId,null,null,null,null,null,"Unknown",null);
+        return Address.build().setValues(addressId,"Unknown");
     }
 
     @Override
@@ -42,6 +42,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Vip loadByCustomer(Long customerId) {
-        return new Vip(customerId,null,null,null);
+        return null;
     }
 }

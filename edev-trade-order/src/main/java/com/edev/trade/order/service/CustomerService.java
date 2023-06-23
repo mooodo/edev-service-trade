@@ -27,5 +27,5 @@ public interface CustomerService {
     @GetMapping("orm/vip/discount")
     Double discount(@RequestParam Long customerId);
     @GetMapping("orm/vip/loadByCustomer")
-    Vip loadByCustomer(Long customerId);
+    Vip loadByCustomer(@RequestParam Long customerId);
 }

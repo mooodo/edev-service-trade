@@ -61,10 +61,10 @@
 		<property name="price"/>
 		<property name="unit"/>
 		<property name="supplierId"/>
+		<property name="classifyId"/>
 		<property name="image"/>
 		<property name="originalPrice"/>
 		<property name="tip"/>
-		<property name="classifyId"/>
 	</do>
 	<do class="com.edev.trade.order.entity.Discount" subclassType="union">
 		<property name="id" column="id" isPrimaryKey="true"/>
