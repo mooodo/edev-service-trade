@@ -5,7 +5,7 @@ import com.edev.support.event.DomainEventReceiver;
 import com.edev.support.exception.ValidException;
 import com.edev.trade.customer.entity.Order;
 import com.edev.trade.customer.entity.Payment;
-import com.edev.trade.customer.service.AccountAggService;
+import com.edev.trade.customer.service.AccountService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class ReturnGoodsEventReceiver implements DomainEventReceiver {
     private final static Log log = LogFactory.getLog(ReturnGoodsEventReceiver.class);
     @Autowired
-    private AccountAggService paymentService;
+    private AccountService paymentService;
     @Override
     @StreamListener("returnGoods")
     public void apply(DomainEventObject event) {
