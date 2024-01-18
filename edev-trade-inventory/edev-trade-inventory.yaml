@@ -30,6 +30,13 @@ spec:
       - name: edev-trade-inventory
         image: repository:5000/edev-trade-inventory:<VERSION>
         imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1500Mi
+          requests:
+            cpu: 100m
+            memory: 1000Mi
         env:
           - name: GIT_URL
             value: "http://edev-service-config:9000"

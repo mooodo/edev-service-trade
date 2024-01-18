@@ -32,6 +32,13 @@ spec:
       - name: edev-service-eureka-cluster
         image: repository:5000/edev-service-eureka:<VERSION>
         imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1500Mi
+          requests:
+            cpu: 100m
+            memory: 1000Mi
         args: [--spring.profiles.active=cluster]
         env:
         - name: POD_NAME

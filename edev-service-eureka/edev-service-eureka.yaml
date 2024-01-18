@@ -20,6 +20,13 @@ spec:
       - name: edev-service-eureka
         image: repository:5000/edev-service-eureka:<VERSION>
         imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1500Mi
+          requests:
+            cpu: 100m
+            memory: 1000Mi
 
 ---
 kind: Service
