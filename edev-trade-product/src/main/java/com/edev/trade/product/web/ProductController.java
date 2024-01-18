@@ -12,31 +12,32 @@ import java.util.Map;
 @RestController
 @RequestMapping("product")
 public class ProductController {
+    private final static String BEAN = "product";
     @Autowired
     private OrmController ormController;
     @PostMapping("save")
     public Object save(@RequestBody Map<String, Object> json) {
-        return ormController.doPost("product", "saveProduct", json);
+        return ormController.doPost(BEAN, "saveProduct", json);
     }
     @PostMapping("saveAll")
     public Object saveAll(@RequestBody List<Object> list) {
-        return ormController.doList("product", "saveProducts", list);
+        return ormController.doList(BEAN, "saveProducts", list);
     }
     @GetMapping("delete")
     public void delete(HttpServletRequest request) {
-        ormController.doGet("product", "deleteProduct", request);
+        ormController.doGet(BEAN, "deleteProduct", request);
     }
     @GetMapping("deleteAll")
     public void deleteAll(HttpServletRequest request) {
-        ormController.doGet("product", "deleteProducts", request);
+        ormController.doGet(BEAN, "deleteProducts", request);
     }
     @GetMapping("get")
     public Object get(HttpServletRequest request) {
-        return ormController.doGet("product", "getProduct", request);
+        return ormController.doGet(BEAN, "getProduct", request);
     }
     @GetMapping("getAll")
     public Object getAll(HttpServletRequest request) {
-        return ormController.doGet("product", "listProducts", request);
+        return ormController.doGet(BEAN, "listProducts", request);
     }
     @Autowired
     private QueryController queryController;

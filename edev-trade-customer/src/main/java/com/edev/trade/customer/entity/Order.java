@@ -17,7 +17,4 @@ public class Order extends Entity<Long> {
 	private Date modifyTime;
 	private String flag;
 	private Payment payment;
-	public static Order build() {
-		return new Order();
-	}
 }

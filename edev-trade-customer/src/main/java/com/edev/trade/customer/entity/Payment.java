@@ -11,7 +11,4 @@ public class Payment extends Entity<Long> {
     private Long accountId;
     private Double amount;
     private String status;
-    public static Payment build() {
-        return new Payment();
-    }
 }
