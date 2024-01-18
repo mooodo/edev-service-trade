@@ -16,7 +16,7 @@
         <module>edev-trade-inventory</module>
         <module>edev-service-eureka</module>
         <module>edev-trade-gateway</module>
-        <module>edev-service-config</module>
         <module>edev-trade-parent</module>
+        <module>edev-service-config</module>
     </modules>
 </project>
