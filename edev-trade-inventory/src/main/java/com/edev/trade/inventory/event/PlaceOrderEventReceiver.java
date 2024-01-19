@@ -6,8 +6,7 @@ import com.edev.support.event.DomainEventReceiver;
 import com.edev.trade.inventory.entity.Order;
 import com.edev.trade.inventory.entity.OrderItem;
 import com.edev.trade.inventory.service.InventoryService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
@@ -17,8 +16,8 @@ import java.util.List;
 
 @Component
 @EnableBinding(PlaceOrderEventClient.class)
+@Slf4j
 public class PlaceOrderEventReceiver implements DomainEventReceiver {
-    private final static Log log = LogFactory.getLog(PlaceOrderEventReceiver.class);
     @Autowired
     private InventoryService service;
     @Override
