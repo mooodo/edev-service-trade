@@ -27,7 +27,6 @@ spec:
           requests:
             cpu: 100m
             memory: 1000Mi
-
 ---
 kind: Service
 apiVersion: v1
@@ -37,10 +36,28 @@ metadata:
   name: edev-service-eureka
   namespace: default
 spec:
-  type: NodePort
   ports:
   - port: 9001 
     targetPort: 9001
-    nodePort: 31001
   selector:
     app: edev-service-eureka
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-eureka
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - host: eureka
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: edev-service-eureka
+                port:
+                  number: 9001

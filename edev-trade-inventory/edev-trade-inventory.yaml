@@ -40,7 +40,6 @@ spec:
         env:
           - name: GIT_URL
             value: "http://edev-service-config:9000"
-
 ---
 kind: Service
 apiVersion: v1

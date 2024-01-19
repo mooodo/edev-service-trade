@@ -49,7 +49,6 @@ spec:
           value: ${POD_NAME}.eureka
         - name: REGISTRY_URL
           value: "http://eureka-0.eureka:9001/eureka,http://eureka-1.eureka:9001/eureka,http://eureka-2.eureka:9001/eureka"
-
 ---
 kind: Service
 apiVersion: v1
@@ -65,7 +64,6 @@ spec:
   clusterIP: None
   selector:
     app: edev-service-eureka-cluster
-
 ---
 kind: Service
 apiVersion: v1
@@ -75,11 +73,29 @@ metadata:
   name: edev-service-eureka-cluster
   namespace: default
 spec:
-  type: NodePort
   ports:
   - name: http
     port: 9001 
     targetPort: 9001
-    nodePort: 32001
   selector:
     app: edev-service-eureka-cluster
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-eureka
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - host: eureka
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: edev-service-eureka-cluster
+                port:
+                  number: 9001

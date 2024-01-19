@@ -38,7 +38,6 @@ spec:
             cpu: 100m
             memory: 1000Mi
         args: ["--spring.profiles.active=docker"]
-
 ---
 kind: Service
 apiVersion: v1
@@ -48,10 +47,28 @@ metadata:
   name: edev-service-config
   namespace: default
 spec:
-  type: NodePort
   ports:
   - port: 9000 
     targetPort: 9000
-    nodePort: 31000
   selector:
     app: edev-service-config
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-config
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - host: config
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: edev-service-config
+                port:
+                  number: 9000
