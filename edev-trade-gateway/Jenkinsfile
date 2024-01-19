@@ -4,6 +4,12 @@ node {
     stage('拉取代码') {
         git "https://gitee.com/mooodo/${parent}.git"
     }
+    stage('编译测试') {
+        sh """
+        cd ${app}
+        mvn clean install -Dmaven.test.failure.ignore=true
+        """
+    }
     stage('制作镜像') {
         sh "/var/jenkins_home/docker.sh ${app}"
         sh """
