@@ -1,18 +1,3 @@
-/*
-Navicat MySQL Data Transfer
-
-Source Server         : tidb
-Source Server Version : 50725
-Source Host           : master:4000
-Source Database       : edevOrder
-
-Target Server Type    : MYSQL
-Target Server Version : 50725
-File Encoding         : 65001
-
-Date: 2023-06-23 21:10:58
-*/
-
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -180,25 +165,3 @@ CREATE TABLE `t_vip_discount` (
 -- ----------------------------
 INSERT INTO `t_vip_discount` VALUES ('1001', '金卡会员打折', '2020-01-01 00:00:00', null, '0.7500', 'vipDiscount', 'golden');
 INSERT INTO `t_vip_discount` VALUES ('1002', '银卡会员打折', '2020-01-01 00:00:00', null, '0.9000', 'vipDiscount', 'silver');
-
--- ----------------------------
--- Table structure for undo_log
--- ----------------------------
-DROP TABLE IF EXISTS `undo_log`;
-CREATE TABLE `undo_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `branch_id` bigint(20) NOT NULL,
-  `xid` varchar(100) NOT NULL,
-  `context` varchar(128) NOT NULL,
-  `rollback_info` longblob NOT NULL,
-  `log_status` int(11) NOT NULL,
-  `log_created` datetime NOT NULL,
-  `log_modified` datetime NOT NULL,
-  `ext` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Records of undo_log
--- ----------------------------
