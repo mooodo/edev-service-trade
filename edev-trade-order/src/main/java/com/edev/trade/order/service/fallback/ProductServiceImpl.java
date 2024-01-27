@@ -2,6 +2,7 @@ package com.edev.trade.order.service.fallback;
 
 import com.edev.trade.order.entity.Product;
 import com.edev.trade.order.service.ProductService;
+import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> listProducts(List<Long> ids) {
+    public List<Product> listProducts(@NonNull List<Long> ids) {
         List<Product> list = new ArrayList<>();
         ids.forEach(id-> list.add(getProduct(id)));
         return list;

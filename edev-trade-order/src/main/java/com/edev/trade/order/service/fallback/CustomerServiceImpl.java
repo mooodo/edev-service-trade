@@ -4,6 +4,7 @@ import com.edev.trade.order.entity.Address;
 import com.edev.trade.order.entity.Customer;
 import com.edev.trade.order.entity.Vip;
 import com.edev.trade.order.service.CustomerService;
+import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> loadAll(List<Long> customerIds) {
+    public List<Customer> loadAll(@NonNull List<Long> customerIds) {
         List<Customer> list = new ArrayList<>();
         customerIds.forEach(customerId->list.add(load(customerId)));
         return list;
@@ -29,7 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Address> loadAddresses(List<Long> addressIds) {
+    public List<Address> loadAddresses(@NonNull List<Long> addressIds) {
         List<Address> list = new ArrayList<>();
         addressIds.forEach(addressId-> list.add(loadAddress(addressId)));
         return list;

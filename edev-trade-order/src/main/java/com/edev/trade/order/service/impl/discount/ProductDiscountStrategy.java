@@ -5,6 +5,7 @@ import com.edev.trade.order.entity.Order;
 import com.edev.trade.order.entity.OrderItem;
 import com.edev.trade.order.entity.ProductDiscount;
 import com.edev.trade.order.service.DiscountService;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +16,7 @@ public class ProductDiscountStrategy implements DiscountStrategy {
     @Autowired
     private DiscountService discountService;
     @Override
-    public void doDiscount(Order order) {
+    public void doDiscount(@NonNull Order order) {
         List<OrderItem> orderItems = order.getOrderItems();
         if(orderItems==null||orderItems.isEmpty()) return;
         orderItems.forEach(orderItem -> {
