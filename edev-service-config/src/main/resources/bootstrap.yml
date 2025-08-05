@@ -88,8 +88,7 @@ eureka:
 spring:
   profiles: jdbc
   rabbitmq:
-    host: rabbitmq-0.rabbitmq
-    # host: rabbit-cluster
+    host: ${host:rabbitmq}
     port: 5672
     username: guest
     password: guest
