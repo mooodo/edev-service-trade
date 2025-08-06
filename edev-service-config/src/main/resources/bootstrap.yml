@@ -95,7 +95,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://mysql-0.mysql:3306/config?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://mysql:3306/config?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
     username: config
     password: config1234
     initialize: true
