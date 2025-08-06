@@ -62,5 +62,29 @@ spring:
     config:
       uri: ${GIT_URL}
       failFast: true
+    gateway:
+      routes:
+        - id: customer
+          uri: lb://service-customer
+          predicates:
+            - Path=/customer/**
+          filters:
+            - StripPrefix=1
+        - id: product
+          uri: lb://service-product
+          predicates:
+            - Path=/product/**
+          filters:
+            - StripPrefix=1
+        - id: order
+          uri: lb://service-order
+          predicates:
+            - Path=/order/**
+        - id: inventory
+          uri: lb://service-inventory
+          predicates:
+            - Path=/inventory/**
+          filters:
+            - StripPrefix=1
 server:
   port: ${SERVICE_PORT:9009}
