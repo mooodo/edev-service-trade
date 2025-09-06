@@ -1,8 +1,8 @@
 eureka:
   instance:
     prefer-ip-address: true
-    lease-expiration-duration-in-seconds: 10 #default 90s
-    lease-renewal-interval-in-seconds: 5 #default 30s
+    lease-expiration-duration-in-seconds: 60 #default 90s
+    lease-renewal-interval-in-seconds: 20 #default 30s
   client:
     service-url:
       defaultZone: http://eureka-0.eureka:9001/eureka/,http://eureka-1.eureka:9001/eureka/,http://eureka-2.eureka:9001/eureka/
@@ -35,8 +35,8 @@ spring:
   rabbitmq:
     host: rabbitmq
     port: 5672
-    username: guest
-    password: guest
+    username: admin
+    password: rabbit1234
 ribbon:
   ConnectTimeout: 1000
   ReadTimeout: 2000
