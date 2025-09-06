@@ -72,3 +72,14 @@ spec:
                 name: edev-service-config
                 port:
                   number: 9000
+---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: edev-service-config-pdb
+  namespace: default
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: edev-service-config

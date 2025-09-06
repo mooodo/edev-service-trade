@@ -21,11 +21,11 @@ spring:
         enabled: true
   redis:
     database: 0
-    host: redis-0.redis
+    host: redis
     port: 6379
     # cluster:
     #   nodes: redis-cluster-0.redis-cluster:6379,redis-cluster-1.redis-cluster:6379,redis-cluster-2.redis-cluster:6379
-    password:
+    password: redis1234
     pool:
       maxActive: 200
       maxWait: -1
@@ -33,8 +33,7 @@ spring:
       minIdel: 0
     timeout: 1000
   rabbitmq:
-    host: rabbitmq-0.rabbitmq
-    # host: rabbit-cluster
+    host: rabbitmq
     port: 5672
     username: guest
     password: guest
