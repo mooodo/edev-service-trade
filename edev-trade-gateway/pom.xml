@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>edev-trade-gateway</artifactId>
-    <version>1.1.0-${maven.build.timestamp}</version>
+    <version>1.1.2-${maven.build.timestamp}</version>
     <parent>
         <artifactId>edev-parent</artifactId>
         <groupId>com.edev</groupId>
-        <version>1.1.0</version>
+        <version>1.1.2</version>
         <relativePath/>
     </parent>
 
@@ -37,11 +37,6 @@
             <groupId>com.github.danielwegener</groupId>
             <artifactId>logback-kafka-appender</artifactId>
             <version>0.2.0-RC2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
         </dependency>
     </dependencies>
 </project>

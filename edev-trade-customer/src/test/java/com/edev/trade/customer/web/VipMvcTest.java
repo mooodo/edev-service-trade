@@ -1,13 +1,11 @@
 package com.edev.trade.customer.web;
 
 import com.edev.support.utils.JsonFile;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -15,10 +13,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class VipMvcTest {
+class VipMvcTest {
     @Autowired
     private MockMvc mvc;
 
@@ -31,7 +28,7 @@ public class VipMvcTest {
      * 5）插入会员时，自动生成创建时间
      */
     @Test
-    public void testSaveAndDelete() throws Exception {
+    void testSaveAndDelete() throws Exception {
         String id = "1";
         String json = JsonFile.read("json/vip/vip0.json");
         String excepted = JsonFile.read("json/vip/excepted0.json");
@@ -69,7 +66,7 @@ public class VipMvcTest {
      * 3）当增删改会员时，由于不是聚合关系，不会更改客户
      */
     @Test
-    public void testSaveAndDeleteWithCustomer() throws Exception {
+    void testSaveAndDeleteWithCustomer() throws Exception {
         String id = "10001";
         String json = JsonFile.read("json/vip/vip2.json");
         String excepted = JsonFile.read("json/vip/excepted2.json");
@@ -107,7 +104,7 @@ public class VipMvcTest {
      * 2）删除等操作时这样提交：[1,10001]
      */
     @Test
-    public void testSaveAndDeleteForList() throws Exception {
+    void testSaveAndDeleteForList() throws Exception {
         String json = JsonFile.read("json/vip/vips0.json");
         String excepted = JsonFile.read("json/vip/exceptedList.json");
         mvc.perform(post("/list/vip/deleteAll")
@@ -141,7 +138,7 @@ public class VipMvcTest {
      * 2）删除等操作时这样提交：customerIds=1,10001
      */
     @Test
-    public void testSaveAndDeleteForJsonList() throws Exception {
+    void testSaveAndDeleteForJsonList() throws Exception {
         String json = JsonFile.read("json/vip/vips1.json");
         String excepted = JsonFile.read("json/vip/exceptedList.json");
 

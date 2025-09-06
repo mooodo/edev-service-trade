@@ -1,20 +1,15 @@
 spring:
   application:
-    name: service-inventory
+    name: service-product
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   config:
     import: "optional:configserver:"
-  autoconfigure:
-    exclude:
-      - org.springframework.cloud.stream.config.StreamAutoConfiguration
-      - org.springframework.cloud.stream.function.FunctionConfiguration
-      - org.springframework.cloud.stream.config.BindingServiceConfiguration
   datasource:
-    url: jdbc:mysql://kubernetes:32306/edevInventory?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
-    username: inventory
-    password: inventory1234
+    url: jdbc:mysql://kubernetes:32306/edevProduct?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: product
+    password: product1234
     type: com.alibaba.druid.pool.DruidDataSource
   redis:
     database: 0
@@ -40,6 +35,4 @@ logging:
     com.edev.support: INFO
     com.edev.trade.query.dao: DEBUG
     com.edev.support.dao: DEBUG
-stubrunner:
-  idsToServiceIds:
-    edev-trade-product: service-product
+    com.edev.support.cache: DEBUG

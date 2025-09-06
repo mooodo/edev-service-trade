@@ -1,13 +1,11 @@
 package com.edev.trade.customer.web;
 
 import com.edev.support.utils.JsonFile;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -15,10 +13,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CustomerMvcTest {
+class CustomerMvcTest {
     @Autowired
     private MockMvc mvc;
     /**
@@ -27,7 +24,7 @@ public class CustomerMvcTest {
      * 2）添加客户时，出生日期是根据身份证按照规则获取
      */
     @Test
-    public void testSaveAndDelete() throws Exception {
+    void testSaveAndDelete() throws Exception {
         String id = "1";
         String json = JsonFile.read("json/customer/customer0.json");
         String excepted = JsonFile.read("json/customer/excepted0.json");
@@ -67,7 +64,7 @@ public class CustomerMvcTest {
      * 5）查询客户时，应当显示该客户相关的所有地址
      */
     @Test
-    public void testSaveAndDeleteWithAddress() throws Exception {
+    void testSaveAndDeleteWithAddress() throws Exception {
         String id = "2";
         String json = JsonFile.read("json/customer/customer2.json");
         String excepted = JsonFile.read("json/customer/excepted2.json");
@@ -106,7 +103,7 @@ public class CustomerMvcTest {
      * 2）删除等操作时这样提交：[1,2]
      */
     @Test
-    public void testSaveAndDeleteForList() throws Exception {
+    void testSaveAndDeleteForList() throws Exception {
         String json = JsonFile.read("json/customer/customers0.json");
         String excepted = JsonFile.read("json/customer/exceptedList.json");
         mvc.perform(post("/list/customer/deleteAll")
@@ -140,7 +137,7 @@ public class CustomerMvcTest {
      * 2）删除等操作时这样提交：customerIds=1,2
      */
     @Test
-    public void testSaveAndDeleteForJsonList() throws Exception {
+    void testSaveAndDeleteForJsonList() throws Exception {
         String json = JsonFile.read("json/customer/customers1.json");
         String excepted = JsonFile.read("json/customer/exceptedList.json");
         mvc.perform(get("/orm/customer/deleteAll")

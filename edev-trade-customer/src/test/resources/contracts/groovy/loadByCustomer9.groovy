@@ -8,12 +8,12 @@ Contract.make {
         method GET()
         url("/orm/vip/loadByCustomer") {
             queryParameters {
-                parameter("customerId","10001")
+                parameter("customerId","10009")
             }
         }
     }
     response {
-        body("null")
+        body(file('loadByCustomer9.json'))
         status 200
         headers {
             contentType(applicationJson())

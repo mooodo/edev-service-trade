@@ -4,7 +4,7 @@
   "addressId": 1000900,
   "amount": 4437.0,
   "modifyTime": null,
-  "flag": "CREATE",
+  "status": "CREATE",
   "customer": {
     "id": 10009,
     "name": "张一德",
@@ -18,8 +18,8 @@
     "countryId": 1000,
     "provinceId": 510000,
     "cityId": 510100,
-    "zoneId": 510105,
-    "address": "宽窄巷子",
+    "districtId": 510105,
+    "addressDetail": "宽窄巷子",
     "phoneNumber": null
   },
   "payment": {

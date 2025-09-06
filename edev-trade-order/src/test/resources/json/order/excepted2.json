@@ -3,7 +3,7 @@
   "customerId": 10001,
   "addressId": 1000100,
   "amount": 5916.0,
-  "flag": "CREATE",
+  "status": "CREATE",
   "customer": {
     "id": 10001,
     "name": "李秋水",
@@ -18,8 +18,8 @@
     "countryId": 1000,
     "provinceId": 420000,
     "cityId": 420100,
-    "zoneId": 420111,
-    "address": "珞瑜路726号",
+    "districtId": 420111,
+    "addressDetail": "珞瑜路726号",
     "phoneNumber": "13300224466"
   },
   "payment": {

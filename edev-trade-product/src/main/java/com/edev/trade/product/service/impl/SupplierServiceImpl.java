@@ -1,13 +1,14 @@
 package com.edev.trade.product.service.impl;
 
 import com.edev.support.dao.BasicDao;
-import com.edev.support.exception.ValidException;
 import com.edev.trade.product.entity.Supplier;
 import com.edev.trade.product.service.SupplierService;
 import lombok.NonNull;
 
 import java.util.Collection;
 import java.util.List;
+
+import static com.edev.support.utils.ValidUtils.*;
 
 public class SupplierServiceImpl implements SupplierService {
     private final BasicDao dao;
@@ -17,8 +18,8 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     private void valid(@NonNull Supplier supplier) {
-        if(supplier.getName()==null) throw new ValidException("The name cannot be null!");
-        if(supplier.getSupplierType()==null) throw new ValidException("The supplier type cannot be null!");
+        isNull(supplier.getId(), "The supplier name is null");
+        isNull(supplier.getSupplierType(), "The supplier type is null");
     }
     @Override
     public Long register(@NonNull Supplier supplier) {

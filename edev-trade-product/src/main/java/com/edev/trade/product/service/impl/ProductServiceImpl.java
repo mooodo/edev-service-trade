@@ -1,13 +1,14 @@
 package com.edev.trade.product.service.impl;
 
 import com.edev.support.dao.BasicDao;
-import com.edev.support.exception.ValidException;
 import com.edev.trade.product.entity.Product;
 import com.edev.trade.product.service.ProductService;
 import lombok.NonNull;
 
 import java.util.Collection;
 import java.util.List;
+
+import static com.edev.support.utils.ValidUtils.*;
 
 public class ProductServiceImpl implements ProductService {
     private final BasicDao dao;
@@ -17,8 +18,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private void validProduct(@NonNull Product product) {
-        if(product.getId()==null) throw new ValidException("The id is null");
-        if(product.getName()==null) throw new ValidException("The name is null");
+        isNull(product.getId(), "The product id is null");
+        isNull(product.getName(), "The product name is null");
     }
 
     @Override
