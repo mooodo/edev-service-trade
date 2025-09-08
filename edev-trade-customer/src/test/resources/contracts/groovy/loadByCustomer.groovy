@@ -16,7 +16,7 @@ Contract.make {
         body("null")
         status 200
         headers {
-            contentType(applicationJson())
+            contentType(textPlain())
         }
     }
 }

@@ -3,6 +3,8 @@ spring:
     name: service-product
   profiles:
     active: dev
+  config:
+    import: "optional:configserver:"
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
