@@ -3,6 +3,7 @@ apiVersion: apps/v1
 metadata:
   labels:
     app: edev-trade-product
+    project: edev-service-trade
   name: edev-trade-product
   namespace: default
 spec:
@@ -15,17 +16,24 @@ spec:
       name: edev-trade-product
       labels:
         app: edev-trade-product
+        project: edev-service-trade
     spec:
       affinity:
         podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: "app"
-                    operator: In
-                    values:
-                      - edev-trade-product
-              topologyKey: "kubernetes.io/hostname"
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 50
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: "app"
+                      operator: In
+                      values:
+                        - edev-trade-product
+                    - key: "project"
+                      operator: In
+                      values:
+                        - edev-service-trade
+                topologyKey: "kubernetes.io/hostname"
       containers:
       - name: edev-trade-product
         image: repository:5000/edev-trade-product:<VERSION>
@@ -46,6 +54,7 @@ apiVersion: v1
 metadata:
   labels:
     app: edev-trade-product
+    project: edev-service-trade
   name: edev-trade-product
   namespace: default
 spec:
@@ -54,3 +63,14 @@ spec:
     targetPort: 9003
   selector:
     app: edev-trade-product
+---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: edev-trade-product-pdb
+  namespace: default
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: edev-trade-product

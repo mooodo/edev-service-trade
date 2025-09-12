@@ -3,6 +3,7 @@ apiVersion: apps/v1
 metadata:
   labels:
     app: edev-service-eureka
+    project: edev-service-trade
   name: edev-service-eureka 
   namespace: default
 spec:
@@ -15,6 +16,7 @@ spec:
       name: edev-service-eureka
       labels:
         app: edev-service-eureka
+        project: edev-service-trade
     spec:
       containers:
       - name: edev-service-eureka
@@ -33,6 +35,7 @@ apiVersion: v1
 metadata:
   labels:
     app: edev-service-eureka
+    project: edev-service-trade
   name: edev-service-eureka
   namespace: default
 spec:
@@ -61,3 +64,14 @@ spec:
                 name: edev-service-eureka
                 port:
                   number: 9001
+---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: edev-service-eureka-pdb
+  namespace: default
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: edev-service-eureka

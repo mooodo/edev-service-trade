@@ -3,6 +3,7 @@ apiVersion: apps/v1
 metadata:
   labels:
     app: edev-trade-inventory
+    project: edev-service-trade
   name: edev-trade-inventory
   namespace: default
 spec:
@@ -15,6 +16,7 @@ spec:
       name: edev-trade-inventory
       labels:
         app: edev-trade-inventory
+        project: edev-service-trade
     spec:
       affinity:
         podAntiAffinity:
@@ -27,6 +29,10 @@ spec:
                       operator: In
                       values:
                         - edev-trade-inventory
+                    - key: "project"
+                      operator: In
+                      values:
+                        - edev-service-trade
                 topologyKey: "kubernetes.io/hostname"
       containers:
       - name: edev-trade-inventory
@@ -41,8 +47,8 @@ spec:
             memory: 1000Mi
         command: ["java", "-Djava.security.egd=file:/dev/./urandom", "-javaagent:/var/lib/skywalking/agent/skywalking-agent.jar", "-jar", "/app.jar","--spring.profiles.active=docker"]
         env:
-          - name: NACOS_ADDR
-            value: "nacos:8848"
+          - name: GIT_URL
+            value: "http://edev-service-config:9000"
           - name: SW_AGENT_NAME
             value: "service-inventory"
           - name: SW_AGENT_COLLECTOR_BACKEND_SERVICES
@@ -66,6 +72,7 @@ apiVersion: v1
 metadata:
   labels:
     app: edev-trade-inventory
+    project: edev-service-trade
   name: edev-trade-inventory
   namespace: default
 spec:
@@ -74,3 +81,14 @@ spec:
     targetPort: 9004
   selector:
     app: edev-trade-inventory
+---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: edev-trade-inventory-pdb
+  namespace: default
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: edev-trade-inventory
