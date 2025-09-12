@@ -1,30 +1,30 @@
 spring:
   application:
-    name: service-order
+    name: service-customer
   profiles:
     active: dev
+  config:
+    import: "optional:configserver:"
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 mybatis:
   mapperLocations: classpath*:mapper/*Mapper.xml
-feign:
-  hystrix:
-    enabled: true
 logging:
   level:
     com.edev.trade: INFO
     com.edev.support: INFO
     com.edev.trade.query.dao: DEBUG
     com.edev.support.dao: DEBUG
-    com.edev.trade.order: DEBUG
+    com.edev.support.cache: DEBUG
+    com.edev.trade.customer.event: DEBUG
 ---
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://master:4000/edevOrder?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
-    username: trade
-    password: trade1234
+    url: jdbc:mysql://kubernetes:32306/edevCustomer?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: customer
+    password: customer1234
     type: com.alibaba.druid.pool.DruidDataSource
   redis:
     database: 0
@@ -40,8 +40,8 @@ spring:
   rabbitmq:
     host: kubernetes
     port: 31672
-    username: guest
-    password: guest
+    username: admin
+    password: rabbit1234
   cloud:
     stream:
       bindings:
@@ -51,28 +51,15 @@ spring:
         returnGoods:
           destination: returnGoods
           group: ${spring.application.name}
-      #rocketmq:
-      #  binder:
-      #    name-server: master:30876
+  #    rocketmq:
+  #      binder:
+  #        name-server: kubernetes:30876
   #kafka:
   #  binder:
-  #    zk-nodes: master:32181
-  #  bootstrap-servers: master:30092
+  #    zk-nodes: kubernetes:32181
+  #  bootstrap-servers: kubernetes:30092
 server:
-  port: 9005
-ribbon:
-  ConnectTimeout: 1000
-  ReadTimeout: 2000
-  MaxAutoRetries: 0 # default 0
-  MaxAutoRetriesNextServer: 2 # default 1
-  OkToRetryOnAllOperations: true # default false
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 6000
+  port: 9002
 eureka:
   client:
     serviceUrl:
@@ -85,4 +72,4 @@ spring:
       uri: ${GIT_URL}
       failFast: true
 server:
-  port: ${SERVICE_PORT:9005}
+  port: ${SERVICE_PORT:9002}

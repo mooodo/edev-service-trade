@@ -24,6 +24,11 @@ spring:
         springCloudBusOutput:
           destination: springCloudBusInput
           contentType: application/json
+  rabbitmq:
+    host: kubernetes
+    port: 31672
+    username: admin
+    password: rabbit1234
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
@@ -50,6 +55,11 @@ spring:
         springCloudBusOutput:
           destination: springCloudBusInput
           contentType: application/json
+  rabbitmq:
+    host: kubernetes
+    port: 31672
+    username: admin
+    password: rabbit1234
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
@@ -87,11 +97,6 @@ eureka:
 ---
 spring:
   profiles: jdbc
-  rabbitmq:
-    host: ${host:rabbitmq}
-    port: 5672
-    username: guest
-    password: guest
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource

@@ -3,6 +3,8 @@ spring:
     name: service-gateway
   profiles:
     active: dev
+  config:
+    import: "optional:configserver:"
 ---
 spring:
   profiles: dev
@@ -42,7 +44,7 @@ spring:
     database: 0
     host: kubernetes
     port: 31379
-    password:
+    password: radis1234
     pool:
       maxActive: 200
       maxWait: -1
