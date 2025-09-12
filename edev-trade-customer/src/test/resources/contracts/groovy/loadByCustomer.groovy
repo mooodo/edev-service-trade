@@ -13,7 +13,7 @@ Contract.make {
         }
     }
     response {
-        body("null")
+        body("")
         status 200
         headers {
             contentType(textPlain())
