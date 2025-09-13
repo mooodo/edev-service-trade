@@ -19,19 +19,21 @@ spec:
         project: edev-service-trade
     spec:
       affinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 50
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                  - key: "app"
-                    operator: In
-                    values:
-                      - edev-service-config
-                  - key: "project"
-                    operator: In
-                    values:
-                      - edev-service-trade
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 50
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: "app"
+                      operator: In
+                      values:
+                        - edev-service-config
+                    - key: "project"
+                      operator: In
+                      values:
+                        - edev-service-trade
+                topologyKey: "kubernetes.io/hostname"
       containers:
       - name: edev-service-config 
         image: repository:5000/edev-service-config:<VERSION>
